@@ -3406,12 +3406,12 @@ $SO
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(mat_rand)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5]
-[1,] 1098  584  354   21 1662
-[2,]  287 1465 1691  932  397
-[3,] 1093   97   80 1317   89
-[4,]   75 1624  494  452  575
-[5,]  831 1434 1220   67 1702
-[6,]   41  285   25   59   26</code></pre>
+[1,]  465 1286   97  923   40
+[2,] 1741 1446   79 1171  580
+[3,]   41   48   54 1597   46
+[4,]   84  487  764  374 1220
+[5,] 1091   83 1983  581  279
+[6,] 1339  956  622   66 1579</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>round_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(my_int){</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(my_int <span class="sc">&lt;</span> <span class="dv">100</span>){</span>
@@ -3427,12 +3427,12 @@ $SO
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat_rand, <span class="at">MARGIN =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, round_fun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5]
-[1,] 1000  600  400   20 2000
-[2,]  300 1000 2000  900  400
-[3,] 1000  100   80 1000   90
-[4,]   80 2000  500  500  600
-[5,]  800 1000 1000   70 2000
-[6,]   40  300   20   60   30</code></pre>
+[1,]  500 1000  100  900   40
+[2,] 2000 1000   80 1000  600
+[3,]   40   50   50 2000   50
+[4,]   80  500  800  400 1000
+[5,] 1000   80 2000  600  300
+[6,] 1000 1000  600   70 2000</code></pre>
 </div>
 </div>
 </section>
@@ -3487,6 +3487,16 @@ $SO
 <p>Example (this is NOT the answer just an example of what goes in the {}):</p>
 <p>“The maximum median annual temperature of 68.25 occurred in 2017 and the minimum median annual temperature of 57.15 occurred in 1907.”</p>
 <p>Note: This code should still run successfully even if the numbers were to change.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>annual_temps <span class="ot">&lt;-</span> <span class="fu">apply</span>(temps_CO[,<span class="dv">3</span><span class="sc">:</span><span class="dv">14</span>], <span class="dv">1</span>, median)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>max_temp_index <span class="ot">&lt;-</span> <span class="fu">which.max</span>(annual_temps)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>min_temp_index <span class="ot">&lt;-</span> <span class="fu">which.min</span>(annual_temps)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The maximum median annual temperature of &quot;</span>, annual_temps[max_temp_index], <span class="st">&quot; occured in &quot;</span>, temps_CO<span class="sc">$</span>year[max_temp_index], <span class="st">&quot; and the minimum median annual temperature of &quot;</span>, annual_temps[min_temp_index], <span class="st">&quot; occured in &quot;</span>, temps_CO<span class="sc">$</span>year[min_temp_index]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;The maximum median annual temperature of 63.95 occured in 1934 and the minimum median annual temperature of 50.85 occured in 1984&quot;</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="question-5-5-points" class="level2">
@@ -3494,6 +3504,22 @@ $SO
 <p>Write a recursive function that calculates the sum of the digits in a number.</p>
 <p>Example: The number 312 would return 6 (3 + 1 + 2)</p>
 <p>Run your function with 935068.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sum_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(my_int){</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(my_int <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    last_digit <span class="ot">=</span> my_int <span class="sc">%%</span> <span class="dv">10</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    number_truncated <span class="ot">&lt;-</span> my_int <span class="sc">%/%</span> <span class="dv">10</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(last_digit <span class="sc">+</span> <span class="fu">sum_fun</span>(number_truncated))</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sum_fun</span>(<span class="dv">935068</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 31</code></pre>
+</div>
+</div>
 </section>
 </section>
 
