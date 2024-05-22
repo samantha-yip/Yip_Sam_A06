@@ -258,7 +258,11 @@ Example (this is NOT the answer just an example of what goes in the {}):
 Note: This code should still run successfully even if the numbers were to change.
 
 ```{r}
+annual_temps <- apply(temps_CO[,3:14], 1, median)
+max_temp_index <- which.max(annual_temps)
+min_temp_index <- which.min(annual_temps)
 
+print(paste0("The maximum median annual temperature of ", annual_temps[max_temp_index], " occured in ", temps_CO$year[max_temp_index], " and the minimum median annual temperature of ", annual_temps[min_temp_index], " occured in ", temps_CO$year[min_temp_index]))
 ```
 
 
