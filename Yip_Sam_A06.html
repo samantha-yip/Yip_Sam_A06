@@ -3405,7 +3405,7 @@ $SO
 <p>ie: 91 rounds to 90; 173 rounds to 200; 1450 rounds to 1000</p>
 <p>Hint: use <code>MARGIN = 1:2</code> to apply the function to each value instead of only a row/col.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>round_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(my_int){</span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>round_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(my_int){ <span class="co"># write round function to put inside apply</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(my_int <span class="sc">&lt;</span> <span class="dv">100</span>){ <span class="co"># if value has 2 digits</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(my_int, <span class="at">digits =</span> <span class="sc">-</span><span class="dv">1</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(my_int <span class="sc">&gt;=</span> <span class="dv">100</span> <span class="sc">&amp;&amp;</span> my_int <span class="sc">&lt;</span> <span class="dv">1000</span>){ <span class="co"># if value has 3 digits</span></span>
@@ -3416,15 +3416,15 @@ $SO
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat_rand, <span class="at">MARGIN =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, round_fun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat_rand, <span class="at">MARGIN =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, round_fun) <span class="co"># use apply function </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5]
-[1,]  600  100 2000  200 2000
-[2,] 2000  100 2000  800 2000
-[3,]   60   70 1000   90   20
-[4,] 1000  200  800  300   30
-[5,] 2000 2000  300   40  800
-[6,] 1000   40  900 1000   70</code></pre>
+[1,] 1000   50 1000   80  900
+[2,] 1000  900  100 2000  700
+[3,]  700   80 1000 2000  900
+[4,]   80 2000   80  800  600
+[5,] 1000  400 2000  300   40
+[6,]   40   70  100 1000 1000</code></pre>
 </div>
 </div>
 </section>
@@ -3445,7 +3445,7 @@ $SO
 <h3 class="anchored" data-anchor-id="part-a-2-points">Part a (2 points)</h3>
 <p>Calculate the average temperature for each month across the whole data frame (using the data for all three states together).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>month_means <span class="ot">&lt;-</span> <span class="fu">apply</span>(max_temps[,<span class="dv">3</span><span class="sc">:</span><span class="dv">14</span>], <span class="dv">2</span>, mean)</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>month_means <span class="ot">&lt;-</span> <span class="fu">apply</span>(max_temps[,<span class="dv">3</span><span class="sc">:</span><span class="dv">14</span>], <span class="dv">2</span>, mean) <span class="co"># call apply on columns 3-14 </span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>month_means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     jan      feb      mar      apr      may      jun      jul      aug 
